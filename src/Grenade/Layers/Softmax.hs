@@ -17,8 +17,8 @@ module Grenade.Layers.Softmax (
   ) where
 
 import           Data.Serialize
+import           Data.Singletons.TypeLits
 
-import           GHC.TypeLits
 import           Grenade.Core
 
 import           Numeric.LinearAlgebra.Static as LAS

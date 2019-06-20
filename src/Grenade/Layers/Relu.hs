@@ -14,8 +14,8 @@ module Grenade.Layers.Relu (
   ) where
 
 import           Data.Serialize
+import           Data.Singletons.TypeLits
 
-import           GHC.TypeLits
 import           Grenade.Core
 
 import qualified Numeric.LinearAlgebra.Static as LAS

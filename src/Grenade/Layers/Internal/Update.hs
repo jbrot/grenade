@@ -5,11 +5,11 @@ module Grenade.Layers.Internal.Update (
   ) where
 
 import           Data.Maybe ( fromJust )
+import           Data.Singletons.TypeLits
 import qualified Data.Vector.Storable as U ( unsafeToForeignPtr0, unsafeFromForeignPtr0 )
 
 import           Foreign ( mallocForeignPtrArray, withForeignPtr )
 import           Foreign.Ptr ( Ptr )
-import           GHC.TypeLits
 
 import           Numeric.LinearAlgebra ( Vector, flatten )
 import           Numeric.LinearAlgebra.Static

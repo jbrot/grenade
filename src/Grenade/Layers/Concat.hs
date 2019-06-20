@@ -26,7 +26,8 @@ module Grenade.Layers.Concat (
 import           Data.Serialize
 
 import           Data.Singletons
-import           GHC.TypeLits
+import           Data.Singletons.Prelude.Num
+import           Data.Singletons.TypeLits
 
 #if MIN_VERSION_base(4,9,0)
 import           Data.Kind (Type)

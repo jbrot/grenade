@@ -15,7 +15,8 @@ module Grenade.Layers.Elu (
 
 import           Data.Serialize
 
-import           GHC.TypeLits
+import           Data.Singletons.TypeLits
+
 import           Grenade.Core
 
 import qualified Numeric.LinearAlgebra.Static as LAS

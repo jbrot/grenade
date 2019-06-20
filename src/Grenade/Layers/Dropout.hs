@@ -9,7 +9,8 @@ module Grenade.Layers.Dropout (
 
 import           Control.Monad.Random hiding (fromList)
 
-import           GHC.TypeLits
+import           Data.Singletons.TypeLits
+
 import           Grenade.Core
 
 -- Dropout layer help to reduce overfitting.

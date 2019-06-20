@@ -17,8 +17,8 @@ module Grenade.Layers.Reshape (
 
 import           Data.Serialize
 
+import           Data.Singletons.Prelude.Num
 import           Data.Singletons.TypeLits
-import           GHC.TypeLits
 
 import           Numeric.LinearAlgebra.Static
 import           Numeric.LinearAlgebra.Data as LA ( flatten )

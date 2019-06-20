@@ -23,7 +23,7 @@ module Grenade.Layers.Inception (
   , Resnet
   ) where
 
-import           GHC.TypeLits
+import           Data.Singletons.Prelude.Num
 
 import           Grenade.Core
 import           Grenade.Layers.Convolution
