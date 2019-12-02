@@ -2,6 +2,7 @@
 {-# LANGUAGE DataKinds             #-}
 {-# LANGUAGE GADTs                 #-}
 {-# LANGUAGE KindSignatures        #-}
+{-# LANGUAGE TypeApplications      #-}
 {-# LANGUAGE TypeFamilies          #-}
 {-# LANGUAGE TypeOperators         #-}
 {-# LANGUAGE StandaloneDeriving    #-}
@@ -9,6 +10,7 @@
 {-# LANGUAGE ScopedTypeVariables   #-}
 {-# LANGUAGE RankNTypes            #-}
 {-# LANGUAGE UndecidableInstances  #-}
+{-# LANGUAGE PolyKinds             #-}
 {-|
 Module      : Grenade.Core.Shape
 Description : Dependently typed shapes of data which are passed between layers of a network
@@ -21,7 +23,7 @@ Stability   : experimental
 module Grenade.Core.Shape (
     Shape (..)
   , S (..)
-  , Sing (..)
+  , SShape (..)
 
   , randomOfShape
   , fromStorable
@@ -42,6 +44,7 @@ import           GHC.TypeLits hiding (natVal)
 #else
 import           GHC.TypeLits
 #endif
+import GHC.Types (Type)
 
 import qualified Numeric.LinearAlgebra.Static as H
 import           Numeric.LinearAlgebra.Static
@@ -87,10 +90,11 @@ deriving instance Show (S n)
 -- These could probably be derived with template haskell, but this seems
 -- clear and makes adding the KnownNat constraints simple.
 -- We can also keep our code TH free, which is great.
-data instance Sing (n :: Shape) where
-  D1Sing :: Sing a -> Sing ('D1 a)
-  D2Sing :: Sing a -> Sing b -> Sing ('D2 a b)
-  D3Sing :: KnownNat (a * c) => Sing a -> Sing b -> Sing c -> Sing ('D3 a b c)
+data SShape :: Shape -> Type where
+    D1Sing :: Sing a -> SShape ('D1 a)
+    D2Sing :: Sing a -> Sing b -> SShape ('D2 a b)
+    D3Sing :: KnownNat (a * c) => Sing a -> Sing b -> Sing c -> SShape ('D3 a b c)
+type instance Sing @Shape = SShape
 
 instance KnownNat a => SingI ('D1 a) where
   sing = D1Sing sing
